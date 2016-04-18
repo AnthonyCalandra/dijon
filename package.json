@@ -1,0 +1,31 @@
+{
+  "devDependencies": {
+    "babel-cli": "^6.2.0",
+    "babel-plugin-transform-class-properties": "^6.6.0",
+    "babel-plugin-transform-decorators-legacy": "^1.3.4",
+    "babel-polyfill": "^6.3.14",
+    "babel-preset-es2015-node5": "^1.1.1",
+    "eslint": "^2.7.0",
+    "eslint-config-airbnb": "^6.2.0"
+  },
+  "dependencies": {
+    "babel-polyfill": "^6.2.0",
+    "source-map-support": "^0.4.0"
+  },
+  "scripts": {
+    "build": "babel es6 --out-dir es5 --source-maps",
+    "watch": "babel es6 --out-dir es5 --source-maps --watch",
+    "start": "node es5/dijon.js"
+  },
+  "babel": {
+    "presets": [
+      "es2015-node5"
+    ],
+    "plugins": [
+      "babel-plugin-transform-decorators-legacy",
+      "transform-class-properties"
+    ]
+  },
+  "author": "Anthony Calandra",
+  "license": "MIT"
+}
