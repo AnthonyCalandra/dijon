@@ -1,4 +1,3 @@
-/* eslint no-shadow: "warn" */
 import { install } from 'source-map-support';
 install();
 

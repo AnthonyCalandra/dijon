@@ -7,7 +7,8 @@ This is an experimental dependency injection (DI) library targeting ES7.
 Suppose we had a `Driver` we would like to have injected into `Car`:
 
 ```js
-class Driver {
+// driver.js
+export default class Driver {
   constructor(name, age) {
     this._name = name;
     this._age = age;
@@ -28,11 +29,16 @@ class Driver {
 ```
 Now for an example of dijon's end goals:
 ```js
-import { DriverFactory } from 'driver.js';
+// car.js
 
+//import { DriverFactory } from './driver';
 // Class-level dependencies or injectors which take a dependency factory and inject them into classes. Useful for multiple dependencies of the same type. (WIP)
 // @injector(DriverFactory)
+
 // =========================
+
+import Driver from './driver';
+
 // Class-level dependencies and middlewares.
 @inject('Driver', Driver, 'Stan', 53)
 // Called whenever 'Driver' dependency is used.
@@ -65,6 +71,7 @@ You can inject regular or frozen dependencies depending on whether you use `@inj
 
 Class-level DI:
 ```js
+import Driver from './driver';
 @inject('Driver', Driver, 'Stan', 53)
 class Car {
   get driver() {
@@ -78,6 +85,7 @@ console.log(car.driver.name); // Stan
 
 Method-level DI:
 ```js
+import Driver from './driver';
 class Car {
   @inject('Driver', Driver, 'Stan', 53)
   get driver() {
@@ -99,6 +107,7 @@ console.log(car.driver2.name); // Anthony
 
 Class-level:
 ```js
+import Driver from './driver';
 const log = (driver) => console.log(`Accessed: { ${driver.toString()} }`);
 
 @inject('Driver', Driver, 'Stan', 53)
